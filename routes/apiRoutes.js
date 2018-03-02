@@ -44,13 +44,17 @@ module.exports = function (app) {
 			            // console.log("Body > ", body);
 			    search.Event = JSON.parse(body)._embedded.events;
 
+<<<<<<< gf2
+	            res.json(search);
+=======
 	          
 	            res.json(search);
 	       
+>>>>>>> master
 	       	 })
 	        })
 
-	    
+	    //==================== Managing User Input -DB/API/client result ================
 	             
 	});
 
@@ -69,6 +73,21 @@ module.exports = function (app) {
 	app.get("/api/results", (req, res) => {
 		res.json("/api/results");
 	//DB
+<<<<<<< gf2
+	//rsnder result to HTML js file
+	})
+}
+
+
+//===================== *** Rerouting *** ===========================
+
+//missing
+
+//==================================================================
+
+
+//ModuleExports
+=======
 	//render result to HTML js file
 
 	})
@@ -89,3 +108,4 @@ module.exports = function (app) {
 
  
 
+>>>>>>> master

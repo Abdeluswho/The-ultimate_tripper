@@ -1,31 +1,42 @@
-// Dependencies
-// =============================================================
+module.exports = function(sequelize, DataTypes) {
 
-// This may be confusing but here Sequelize (capital) references the standard library
-var Sequelize = require("sequelize");
-// sequelize (lowercase) references our connection to the DB.
-var sequelize = require("../config/connection.js");
-
-
-var user = sequelize.define("user", {
-  username: {
-    type: Sequelize.STRING
+  var User = sequelize.define("User", {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+    },
   },
-  password: {
-    type: Sequelize.STRING
-  },
-  email: {
-    type: Sequelize.STRING
-  },
-  created_at: {
-    type: Sequelize.DATE
-  }
-}, {
-  timestamps: false
-});
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isEmail: true,
+        msg: "Please enter a valid email (jhon@abz.net)"
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        min: 8,
+        is: ["^[a-z]+$",'i']
+      }
+    }
+  });
 
-// Syncs with DB
-user.sync();
-
-// Makes the Chirp Model available for other files (will also create a table)
-module.exports = user;
+  User.associate = function (models) {
+    User.hasMany(models.Trip, {
+      foreingKey: "usernameId"
+    });
+  };
+  return User;
+};
