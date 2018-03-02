@@ -42,14 +42,11 @@ module.exports = function (app) {
 			            //********************** */
 			           search.Event = JSON.parse(body)._embedded.events;
 
-	           // setTimeout(function(){
-	           //  console.log(search);
 	            res.json(search);
-	        //}, 0);
 	       	 })
 	        })
 
-	    
+	    //==================== Managing User Input -DB/API/client result ================
 	             
 	});
 
@@ -59,64 +56,17 @@ module.exports = function (app) {
 	})
 	app.get("/api/results", (req, res) => {
 		res.json("/api/results");
-
+	//DB
+	//rsnder result to HTML js file
 	})
 }
 
 
-//======================== Gerardo's Version  ===================================================
+//===================== *** Rerouting *** ===========================
 
-                   //============== USING THE HTML FILE ===============
+//missing
 
-// module.exports = function(app){
-
-        
-
-//     app.get("/user/:destination", (req, res) => {
-//         var destination = req.params.destination;
-//         var key = "d9p3q32cju7pyqrctz6h8t8p";
-//         var hotqueryURL = "http://api.hotwire.com/v1/deal/hotel?apikey=" + key + "&dest=" + destination + "&distance=5~15&diversity=city";
-        
-
-//             request(hotqueryURL, function(error, response, body){
-//                 var jsonBody = JSON.parse(parser.toJson(body));
-//                 // console.log("got it");
-//                 // console.log("Body > ", jsonBody.Hotwire.Result.HotelDeal[0]);
-//                 //********************** */
-//                 var hotel = jsonBody.Hotwire.Result.HotelDeal[0]
-//                 res.json(hotel)
-//             })
-
-                    
-//         })
-// };
+//==================================================================
 
 
-
-
-// //request to the hotel api
-// router.get("/user/:destination", (req, res) => {
-//     var destination = req.params.destination;
-//     var key = "d9p3q32cju7pyqrctz6h8t8p";
-//     var hotqueryURL = "http://api.hotwire.com/v1/deal/hotel?apikey=" + key + "&dest=" + destination + "&distance=5~15&diversity=city&format=json";
-
-//     request(hotqueryURL, (error, response, result) => {
-//         var hotelObj = JSON.parse(result);
-//         console.log(hotelObj.Result[0]);
-//         res.json(hotelObj);
-//     })
-// });
-
-// //request to the events
-// router.get("/trip/event", (req, res) => {
-//     var eventqueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&size=3&apikey=YxwPs1JETjjGeZ5DldVNzdgWDxSziGCo";
-
-//     request(eventqueryURL, (err, response, result) => {
-//         var eventObj = JSON.parse(result);
-//         console.log(eventObj._embedded.events[0]);
-//         res.json(eventObj._embedded.events[0]);
-//     });
-// });
- 
-
-// module.exports = router;
+//ModuleExports
