@@ -15,7 +15,10 @@ var router = express.Router()
 module.exports = function (app) {
 	// body...
 
-//********************** */
+
+
+//**********************========Using Input data as paramaters for the API call====***************//
+	//search object to save  both API results  
 	var search ={};
 	//Once the form is submitted
 	app.get("/user/:destination", (req, res) => {
@@ -35,14 +38,19 @@ module.exports = function (app) {
 	            // res.send();
 	            var eventqueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&size=1&apikey=YxwPs1JETjjGeZ5DldVNzdgWDxSziGCo";
 
-			        request(eventqueryURL, function(error, response, body){ 
+			    request(eventqueryURL, function(error, response, body){ 
 			            if (error){ throw error;}
 			            // console.log("-----------------");
 			            // console.log("Body > ", body);
-			            //********************** */
-			           search.Event = JSON.parse(body)._embedded.events;
+			    search.Event = JSON.parse(body)._embedded.events;
 
+<<<<<<< gf2
 	            res.json(search);
+=======
+	          
+	            res.json(search);
+	       
+>>>>>>> master
 	       	 })
 	        })
 
@@ -50,13 +58,22 @@ module.exports = function (app) {
 	             
 	});
 
+//====================Managing User Input -DB/API/client result==================== 	
+
+	// Here are the values collected from create-trip Form submition
+	//to save it in the DB
+
 	app.post("/api/results", (req, res) => {
 		console.log("results", req.body);
+	//DB	
 
 	})
+
+	//Pulling out data from DB that needs to be sent to the user
 	app.get("/api/results", (req, res) => {
 		res.json("/api/results");
 	//DB
+<<<<<<< gf2
 	//rsnder result to HTML js file
 	})
 }
@@ -70,3 +87,25 @@ module.exports = function (app) {
 
 
 //ModuleExports
+=======
+	//render result to HTML js file
+
+	})
+//==================================================================================
+
+//========================= *** Rerouting *** ======================================
+//missing
+//==================================================================================
+
+
+
+
+
+
+}// ModuleExports
+
+
+
+ 
+
+>>>>>>> master
