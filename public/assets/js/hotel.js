@@ -1,4 +1,6 @@
 $(document).ready(() => {
+    
+//======================== *********Trip-From ******** submition event===========
     $("#form-submit").on("submit", (event) => { 
         // event.preventDefault();       
         var destination = $('#destination').val().trim();
@@ -18,7 +20,7 @@ $(document).ready(() => {
         console.log(dateEnd);
         console.log(budget);
 
-      
+      //GET data from the API unsing User input -------------------------------------
 
         $.ajax({
             url: "/user/" + destination,
@@ -27,6 +29,9 @@ $(document).ready(() => {
                 console.log(data);
             }
         });
+
+//=========================Results page=========================================
+      // Post Form values to the server to save it in the DB
 
         $.ajax({
             url: "/api/results",
@@ -37,10 +42,63 @@ $(document).ready(() => {
             }
         });
 
+      // GET data from DB to Populate it to the User
 
-      
+        $.ajax({
+            url: "/api/results",
+            method: "get",
+            data: // whatever we are pulling out from database to generate results page,
+            success: function(data) {
+                console.log("success");
+            }
+        });
+});//event ends
 
-        
+//======================= ********Login model******* values========================================
+
+        $("#modal1").on('submit', (event) => {
+            // login event for authentification!
+            var userName = $('#user-name').val().trim();
+            var passWord = $('#password').val() //needs some encryption
+        })
+
+ //=================================================================================
+
+
+ //======================Create *****Account model****** values for the User table DB==============================
+
+//******
+
+        $("#modal2").on('submit', (event) => {
+            // login event for authentification!
+            var userName = $('#user-name').val().trim();
+            var email = $('#email').val();
+            var passWord = $('#password').val() //needs some encryption
+        })
+
+
+
+
+
+ //====================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //======================Search bar values for a random results==============================
+
+        $('#search').val() //needs an event handler
+
+ //====================================================================================================
 
 
         //============================= EVENTS API ==================================================
@@ -54,5 +112,5 @@ $(document).ready(() => {
         //     console.dir(eventBody._embedded);
         // })
 
-    });
-});
+    
+});//DOM

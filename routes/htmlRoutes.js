@@ -14,6 +14,11 @@ module.exports = function(app){
         	res.sendFile(path.join(__dirname, "../public/create-trip.html"));
    		 })
 
+        //need to create the file after the HTML fixes============
+        app.get("/result", (req, res) => {
+	        res.sendFile(path.join(__dirname, "../public/result.html"));
+	    });
+
 	    
 
 }
