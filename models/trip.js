@@ -8,24 +8,8 @@ module.exports = function (sequelize, DataTypes){
       type: DataTypes.STRING,
       allowNull: false
     },
-    nightDuration: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    totalCost: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     startDate: {
       type: DataTypes.DATE,
-      allowNull: false
-    },
-    event_name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    venue_name: {
-      type: DataTypes.INTEGER,
       allowNull: false
     },
     budget: {

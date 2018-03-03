@@ -28,6 +28,7 @@ app.use(bodyParser.json());
 // app.use(routes);
 require ("./routes/apiRoutes.js")(app);
 require ("./routes/htmlRoutes.js")(app);
+require ("./routes/dbRoutes.js")(app);
 
 
 // =============================================================================
@@ -35,6 +36,8 @@ require ("./routes/htmlRoutes.js")(app);
 // The below code effectively "starts" our server
 // =============================================================================
 
-app.listen(PORT, function() {
-  console.log("App listening on PORT: " + PORT);
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
