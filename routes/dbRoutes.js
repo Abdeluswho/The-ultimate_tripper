@@ -1,6 +1,7 @@
 var db = require ("../models");
+var express = require("express");
 
-modules.export = function (app) {
+module.exports = function (app) {
     app.get("/api/past-trips", (req, res) => {
         db.Trips.findAll({
             where: "" //inferior to today's date

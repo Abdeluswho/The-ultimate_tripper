@@ -22,9 +22,11 @@ module.exports = function (app) {
 	//search object to save  both API results  
 	var search ={};
 	//Once the form is submitted
-	app.get("/user/:destination/:dateStart", (req, res) => {
+	app.get("/user/:destination", (req, res) => {
 	    var destination = req.params.destination;
 	    var startDate = req.params.dateStart;
+
+	    console.log(res.body);
 	    
 
 	    console.log(destination);
@@ -68,27 +70,24 @@ module.exports = function (app) {
 	app.post("/user/trip-result", (req, res) => {
 		console.log("results", req.body);
 		
-		db.User.findOne({
-			where:{
-			 	username: req.body.username
-			}
-		}).then((results)=>{
-			var id = results.dataValues.id;
+		// db.User.findOne({
+		// 	where:{
+		// 	 	username: req.body.username
+		// 	}
+		// }).then((results)=>{
+		// 	var id = results.dataValues.id;
 
 			db.Trip.create({
 	          city: req.body.destination,
 	          startDate: req.body.dateStart,
 	          budget: req.body.budget
-	        },{
-	        	where: {
-	        		UserId: id
-	        	}
+	        
 	        }).then(function(results) {
 	        // body...
 	        	res.json(results);
 	      });
 
-		})
+		
 
 		
 	// DB	
