@@ -31,23 +31,31 @@ $('#create-next-trip').modal({
             console.log(dateEnd);
             console.log(budget);
 
+            
+
           //GET data from the API unsing User input -------------------------------------
-
-    $.ajax({
-                url: "/user/" + destination+ "/" + dateStart , 
-                method: "GET",
-
-                success: function(data) {
-                    console.log(data);
-                }
-            });
+        APIdata();
+    
         
-        result();
+        // result();
 
         }//callback function
 
 
 })// modal event  end
+
+    function APIdata(){
+
+        $.ajax({
+                url: "/user/" + destination, 
+                method: "GET",
+                data: UserInput,
+
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+    }
         
     //=========================Results page=========================================
           // Post Form values to the server to save it in the DB

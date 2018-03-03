@@ -17,23 +17,16 @@
     <div class="nav-wrapper container">
       <a id="logo-container" href="/" class="brand-logo"><img src="assets/img/logo-tripper.png" height="50px" width="200px"></a>
       <ul class="right hide-on-med-and-down">
-        <li><a class="modal-trigger" href="#modal1">Log In</a></li>
-        <li><a class="modal-trigger" href="#modalCreate">Create Account</a></li>
+        <li><a class="modal-trigger" href="#modal_log">Log In</a></li>
+        <li><a class="modal-trigger" href="#create-account">Create Account</a></li>
         <li><a href="user.html">My Account</a></li>
       </ul>
       
       
       <div>
-
-      <script>
-      $(document).ready(function(){
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-  });
-     	</script>
       	
   <!-- Modal Structure Start -->
-  <div id="modal1" class="modal">
+  <div id="modal_log" class="modal">
     <div class="modal-content #e0e0e0 grey lighten-2">
       <h5 style="color: #212121">Member Log In</h5>
 <div class="container">
@@ -41,14 +34,14 @@
     <form class="col s6">
       <div class="row">
         <div class="input-field col s6">
-          <input id="user-name" type="text" class="validate">
+          <input id="user-name" type="text" class="validate" style="color: black;">
           <label for="user_name">User Name:</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s6">
-          <input id="password" type="password" class="validate">
+          <input id="password" type="password" class="validate" style="color: black;">
           <label for="password">Password:</label>
         </div>
       </div>
@@ -57,7 +50,7 @@
 </div>
 
       <div>
-    <button id="submit-trip" class="btn #ef5350 red lighten-1" type="submit" name="action">Log In</button>
+    <button id="submit-trip" class="modal-action modal-close waves-effect btn #ef5350 red lighten-1" type="submit" name="action">Log In</button>
     </div>
 
     </div>
@@ -66,6 +59,60 @@
     <!-- Modal Form Structure End -->
   
   </div>
+
+  <!-- ============================  CREATE ACCOUNT ============================== -->
+
+      <div class="container">
+
+        <div id="create-account" class="modal">
+          <div class="modal-content #e0e0e0 grey lighten-2">
+            <h5 style="color: #212121">Create Account</h5>
+
+            <div class="row" class="modal-content" style="background: white">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="name" type="text" class="validate" style="color: black;">
+                    <label for="name">Name</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="username-acc" type="text" class="validate" style="color: black;">
+                    <label for="username-acc">Username</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                      <input id="email" type="email" class="validate" style="color: black;">
+                      <label for="email">Email:</label>
+                    </div>
+                  </div>
+
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="password-acc" type="password" class="validate" style="color: black;">
+                    <label for="password-acc">Password:</label>
+                  </div>
+                </div>
+
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <input id="password-confirmation" type="password" class="validate" style="color: black;">
+                      <label for="password-confirmation">Confirm Password:</label>
+                    </div>
+                  </div>
+              </form>
+            </div>
+
+            <div>
+              <button id="submit-trip" class="modal-action modal-close waves-effect btn #ef5350 red lighten-1" type="submit" name="action">Create Account</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
      
       <ul id="nav-mobile" class="side-nav">
@@ -235,8 +282,9 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="assets/js/materialize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="assets/js/init.js"></script>
+  <script src="assets/js/hotel.js"></script>
 
 
   </body>

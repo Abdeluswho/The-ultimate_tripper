@@ -31,21 +31,21 @@
           <div class="row" class="modal-content" style="background: white">
             <form class="col s6">
               <div class="row">
-                <div class="input-field col s6">
-                  <input id="user-name" type="text" class="validate">
-                  <label for="user_name">User Name:</label>
+                <div class="input-field col s8">
+                  <input id="user-name" type="text" class="validate" style="color: black;">
+                  <label for="user_name">User Name</label>
                 </div>
               </div>
               <div class="row">
-                <div class="input-field col s6">
-                  <input id="password" type="password" class="validate">
-                  <label for="password">Password:</label>
+                <div class="input-field col s8">
+                  <input id="password" type="password" class="validate" style="color: black;">
+                  <label for="password">Password</label>
                 </div>
               </div>
             </form>
           </div>
           <div>
-            <button id="submit-trip" class="btn #ef5350 red lighten-1" type="submit" name="action">Log In</button>
+            <button id="submit-trip" class="modal-action modal-close waves-effect btn #ef5350 red lighten-1" type="submit" name="action">Log In</button>
           </div>
         </div>
       </div>
@@ -83,7 +83,7 @@
         <div class="modal-content #e0e0e0 grey lighten-2">
           <h5 style="color: #212121">Create Your Next Trip</h5>
           <div class="row" class="modal-content" style="background: rgb(250, 248, 248)">
-            <form id="form-submit" action="/api/trip-result" method="POST" class="col s12">
+            <form id="form-submit" action="/user/destination"  class="col s12">
           
               <div class="row">
                 <div class="input-field col s8">
@@ -112,7 +112,7 @@
                   <label>Budget:</label>
                 </div>
                 <div class="input-field col s8"> 
-                  <button id="submit-trip" class="btn #ef5350 red lighten-1" type="submit" name="action">Submit</button>
+                  <button id="submit-trip" class="modal-action modal-close waves-effect btn #ef5350 red lighten-1" type="submit" name="action">Submit</button>
                 </div>
               </div>
             </form>
@@ -132,35 +132,35 @@
               <form class="col s12">
                 <div class="row">
                   <div class="input-field col s6">
-                    <input id="name" type="text" class="validate">
-                    <label for="name">Name:</label>
+                    <input id="name" type="text" class="validate" style="color: black;">
+                    <label for="name">Name</label>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="input-field col s6">
-                    <input id="user-name" type="text" class="validate">
-                    <label for="user_name">Username:</label>
+                    <input id="username-acc" type="text" class="validate" style="color: black;">
+                    <label for="username-acc">Username</label>
                   </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s6">
-                      <input id="email" type="email" class="validate">
+                      <input id="email" type="email" class="validate" style="color: black;">
                       <label for="email">Email:</label>
                     </div>
                   </div>
 
                 <div class="row">
                   <div class="input-field col s6">
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Password:</label>
+                    <input id="password-acc" type="password" class="validate" style="color: black;">
+                    <label for="password-acc">Password:</label>
                   </div>
                 </div>
 
                   <div class="row">
                     <div class="input-field col s6">
-                      <input id="password-confirmation" type="password" class="validate">
+                      <input id="password-confirmation" type="password" class="validate" style="color: black;">
                       <label for="password-confirmation">Confirm Password:</label>
                     </div>
                   </div>
@@ -168,7 +168,7 @@
             </div>
 
             <div>
-              <button id="submit-trip" class="btn #ef5350 red lighten-1" type="submit" name="action">Create Account</button>
+              <button id="submit-trip" class="modal-action modal-close waves-effect btn #ef5350 red lighten-1" type="submit" name="action">Create Account</button>
             </div>
           </div>
         </div>

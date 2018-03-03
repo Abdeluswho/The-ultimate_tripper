@@ -7,11 +7,11 @@ module.exports = function (sequelize, DataTypes){
     },
     startDate: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
     budget: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
    
   });

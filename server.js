@@ -2,6 +2,7 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let path = require('path');
 const exphbs = require("express-handlebars");
+var db = require('./models');
 
 // ==============================================================================
 // EXPRESS CONFIGURATION
@@ -36,7 +37,7 @@ require ("./routes/dbRoutes.js")(app);
 // The below code effectively "starts" our server
 // =============================================================================
 
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
