@@ -1,68 +1,92 @@
 $(document).ready(() => {
 
-
-    
 //======================== *********Trip-From ******** submition event===========
-    $("#form-submit").on("submit", (event) => { 
-        // event.preventDefault(); 
-        var username = $('#usernm').val().trim();      
-        var destination = $('#destination').val().trim();
-        var dateStart = $('#date-start').val();
-        var dateEnd = $('#date-end').val();
-        var budget = $("#budget").val();
+    
 
-        var UserInput = {
+$('#create-next-trip').modal({
 
-         username,
+        complete: function (){
 
-         destination,
+            // event.preventDefault(); 
+            var username = $('#usernm').val().trim();      
+            var destination = $('#destination').val().trim();
+            var dateStart = $('#date-start').val();
+            var dateEnd = $('#date-end').val();
+            var budget = $("#budget").val();
 
-         dateStart,
-         
-         budget 
+            var UserInput = {
 
-        }
+             username,
 
-        console.log(destination);
-        console.log(dateStart);
-        console.log(dateEnd);
-        console.log(budget);
+             destination,
 
-      //GET data from the API unsing User input -------------------------------------
+             dateStart,
+             
+             budget 
 
-$.ajax({
-            url: "/user/" + destination+ "/" + dateStart , 
-            method: "GET",
-
-            success: function(data) {
-                console.log(data);
             }
-        });
 
-//=========================Results page=========================================
-      // Post Form values to the server to save it in the DB
+            console.log(destination);
+            console.log(dateStart);
+            console.log(dateEnd);
+            console.log(budget);
 
-$.ajax({
-            url: "/user/trip-result",
-            method: "POST",
-            data: UserInput,
-            success: function(data) {
-                //data that was saved in the DB
-                console.log("data from POST success ", data);
-            }
-        });
+          //GET data from the API unsing User input -------------------------------------
 
-      // GET data from DB to Populate it to the User
+    $.ajax({
+                url: "/user/" + destination+ "/" + dateStart , 
+                method: "GET",
 
-$.ajax({
-            url: "/user/trip-result",
-            method: "GET",
-            // data: // whatever we are pulling out from database to generate results page,
-            success: function(data) {
-                console.log("data from GET success ", data);
-            }
-        });
-});//event ends
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        
+        result();
+
+        }//callback function
+
+
+})// modal event  end
+        
+    //=========================Results page=========================================
+          // Post Form values to the server to save it in the DB
+    function result(){
+        //********************
+
+        $.ajax({
+                url: "/user/trip-result",
+                method: "POST",
+                data: UserInput,
+                success: function(data) {
+                    //data that was saved in the DB
+                    console.log("data from POST success ", data);
+                }
+            });
+
+          // GET data from DB to Populate it to the User
+
+        $.ajax({
+                url: "/user/trip-result",
+                method: "GET",
+                // data: // whatever we are pulling out from database to generate results page,
+                success: function(data) {
+                    console.log("data from GET success ", data);
+                }
+            });
+
+
+        //*******************
+    }
+
+
+
+
+
+
+
+
+
 
 //********************************* === modal manipulation === ********************************************************
 
