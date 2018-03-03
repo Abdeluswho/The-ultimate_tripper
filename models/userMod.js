@@ -18,10 +18,14 @@ module.exports = function(sequelize, DataTypes) {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      isUnique :true,
       validate: {
-        isEmail: true,
-        msg: "Please enter a valid email (jhon@abz.net)"
+        isEmail:{ 
+            msg: "Please enter a valid email (jhon@abz.net)"
+          }
+        
       }
+      
     },
     password: {
       type: DataTypes.STRING,
@@ -35,7 +39,7 @@ module.exports = function(sequelize, DataTypes) {
 
   User.associate = function (models) {
     User.hasMany(models.Trip, {
-      foreingKey: "usernameId"
+      foreingKey: "id"
     });
   };
   return User;
