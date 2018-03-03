@@ -1,16 +1,26 @@
 $(document).ready(() => {
+
+
     
 //======================== *********Trip-From ******** submition event===========
     $("#form-submit").on("submit", (event) => { 
-        event.preventDefault();       
+        // event.preventDefault(); 
+        var username = $('#usernm').val().trim();      
         var destination = $('#destination').val().trim();
         var dateStart = $('#date-start').val();
         var dateEnd = $('#date-end').val();
         var budget = $("#budget").val();
 
-        var obj={
-         destination,     
+        var UserInput = {
+
+         username,
+
+         destination,
+
+         dateStart,
+         
          budget 
+
         }
 
         console.log(destination);
@@ -20,9 +30,10 @@ $(document).ready(() => {
 
       //GET data from the API unsing User input -------------------------------------
 
-        $.ajax({
-            url: "/user/" + destination,
+$.ajax({
+            url: "/user/" + destination+ "/" + dateStart , 
             method: "GET",
+
             success: function(data) {
                 console.log(data);
             }
@@ -31,64 +42,164 @@ $(document).ready(() => {
 //=========================Results page=========================================
       // Post Form values to the server to save it in the DB
 
-        $.ajax({
-            url: "/api/trip-results",
+$.ajax({
+            url: "/user/trip-result",
             method: "POST",
-            data: obj,
+            data: UserInput,
             success: function(data) {
-                console.log("success");
+                //data that was saved in the DB
+                console.log("data from POST success ", data);
             }
         });
 
       // GET data from DB to Populate it to the User
 
-        $.ajax({
-            url: "/api/trip-results",
+$.ajax({
+            url: "/user/trip-result",
             method: "GET",
-            data: "",// whatever we are pulling out from database to generate results page,
+            // data: // whatever we are pulling out from database to generate results page,
             success: function(data) {
-                console.log("success");
+                console.log("data from GET success ", data);
             }
         });
 });//event ends
 
-//======================= ********Login model******* values========================================
+//********************************* === modal manipulation === ********************************************************
 
-        $("#modal1").on('submit', (event) => {
-            // login event for authentification!
-            var userName = $('#user-name').val().trim();
-            var passWord = $('#password').val() //needs some encryption
-        })
+    $('.modal').modal();
+     
+     var $user = {};
 
- //=================================================================================
+    $('#create-account').modal({
+      
+      complete: function() { 
 
-
- //======================Create *****Account model****** values for the User table DB==============================
-
-//******
-
-        $("#modal2").on('submit', (event) => {
-            // login event for authentification!
-            var userName = $('#user-name').val().trim();
+            var name = $('#name').val().trim();
+            var username = $('#username-acc').val().trim();
             var email = $('#email').val();
-            var passWord = $('#password').val() //needs some encryption
+            var password = $('#password-confirmation').val() //needs some encryption
+
+            
+            if (username && email && password) {
+
+                alert('Closed');
+                 $user= {
+                    name,
+                    username,
+                    password,
+                    email
+                };
+
+            console.log('new user: ', $user);
+
+            register();
+
+         
+            }else {
+                alert("Sorry! Can't create empty account");
+            }
+
+        } // Callback for Modal close
+    });
+//=================Create *****Account model****** values for the User table DB=================  
+  function register() {
+       // body...
+  
+    $.ajax({
+            url: "/user/account/registration",
+            method: "POST",
+            data: $user,
+            success: function(data) {
+                //data that was saved in the DB
+                console.log("data from user POST success ", data);
+                }
+            });
+
+    $.ajax({
+            url: "/user/account/registration",
+            method: "GET",
+            // data: // whatever we are pulling out from database to generate results page,
+            success: function(data) {
+                console.log("data from user GET success ", data);
+                }
+            });
+ } 
+//========================================== *Account modal end* ===========================================
+
+
+//======================= ********Login model******* values========================================================
+        var auth = {};
+
+        $("#modal_log").modal({
+
+            complete: function (){
+
+                 // login event for authentification!
+                var username = $('#user-name').val().trim();
+                var password = $('#password').val(); //needs some encryption
+
+                 auth = {
+
+                    username,
+                    password
+                }
+
+                console.log('username ', username, ' password ', password);
+
+                login();
+                
+            }
+
         })
 
+function login() {
+    // body...
+
+   
+    $.ajax({
+            url: "/user/account/login",
+            method: "POST",
+            data: auth,
+            success: function(data) {
+                //data that was saved in the DB
+                console.log("data from login POST success ", data);
+                }
+            });
+
+    $.ajax({
+            url: "/user/account/login",
+            method: "GET",
+            // data: // whatever we are pulling out from database to generate results page,
+            success: function(data) {
+                console.log("data from login GET success ", data);
+                }
+            });
+}
+           
+      
+
+ //================================================================================================================
+
+//********************************* === modal manipulation end === ********************************************************
 
 
+ //======================Search bar values for a random results==============================
 
+        $('#search').val() //needs an event handler
 
  //====================================================================================================
 
 
+        //============================= EVENTS API ==================================================
+        // var eventqueryURL = "https://cryptic-headland-94862.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events.json?city=" + destination + "&size=3&apikey=YxwPs1JETjjGeZ5DldVNzdgWDxSziGCo";
 
-
-
-
-        // ====================== Search bar valuse for a random results ===============
-
-        $("#search").val() //needs an event handler
-        
+        // $.ajax({
+        //     url: eventqueryURL,
+        //     method: "GET"
+        // }).done((result) => {
+        //     var eventBody = result;
+        //     console.dir(eventBody._embedded);
+        // })
 
     
 });//DOM
