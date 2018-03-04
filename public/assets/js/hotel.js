@@ -34,7 +34,7 @@ $('#create-next-trip').modal({
             
 
           //GET data from the API unsing User input -------------------------------------
-        APIdata();
+        APIdata(destination);
     
         
         // result();
@@ -44,17 +44,17 @@ $('#create-next-trip').modal({
 
 })// modal event  end
 
-    function APIdata(){
+    function APIdata(destination){
+       
 
-        $.ajax({
+       $.ajax({
                 url: "/user/" + destination, 
                 method: "GET",
-                data: UserInput,
-
                 success: function(data) {
                     console.log(data);
                 }
             });
+       
     }
         
     //=========================Results page=========================================
@@ -203,7 +203,7 @@ function login() {
             method: "GET",
             // data: // whatever we are pulling out from database to generate results page,
             success: function(data) {
-                console.log("data from login GET success ", data);
+                alert("Success! You're logged in");
                 }
             });
 }
@@ -216,8 +216,40 @@ function login() {
 
 
  //======================Search bar values for a random results==============================
+   ;
+     
+       //needs an event handler
 
-        $('#search').val() //needs an event handler
+     $('#search-button').on("click", function(event) {
+
+  // Cancel the default action, if needed
+          event.preventDefault();
+            var search = $('#search').val()
+            
+            console.log(search);
+
+             $.ajax({
+                url: "/user/" + search, 
+                method: "GET",
+                success: function(data) {
+                    console.log(data);
+
+
+
+                   var title=  $('#title');
+                   var content =  $('#content')
+                   var newcard =  $('#newcard')
+
+                   title.html("<h1>" + data.Hotel.Headline+ "</h1>");
+                }
+            });
+
+               
+          
+       
+           
+         
+});
 
  //====================================================================================================
 

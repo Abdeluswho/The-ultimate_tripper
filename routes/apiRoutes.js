@@ -32,17 +32,17 @@ module.exports = function (app) {
 	    console.log(destination);
 
 	    var key = "d9p3q32cju7pyqrctz6h8t8p";
-	    var hotqueryURL = "http://api.hotwire.com/v1/deal/hotel?apikey=" + key + "&dest=" + destination + "&startdate="+ startDate+"&distance=5~15&diversity=city";
+	    var hotqueryURL = "http://api.hotwire.com/v1/deal/hotel?apikey=" + key + "&dest=" + destination + "&distance=5~15&diversity=city";
 	   
 
 	        request(hotqueryURL, function(error, response, body){
 	            var jsonBody = JSON.parse(parser.toJson(body));
 	            // console.log("got it");
-	            // console.log("Body > ", jsonBody.Hotwire.Result.HotelDeal[0]);
+	          
 	            //********************** */
-	            search.Hotel = jsonBody.Hotwire.Result;
+	            search.Hotel = jsonBody.Hotwire.Result.HotelDeal[0];
 	            // res.send();
-	            var eventqueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&size=1&apikey=YxwPs1JETjjGeZ5DldVNzdgWDxSziGCo";
+	            var eventqueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&size=3&apikey=YxwPs1JETjjGeZ5DldVNzdgWDxSziGCo";
 
 			    request(eventqueryURL, function(error, response, body){ 
 			            if (error){ throw error;}
@@ -151,20 +151,29 @@ app.post("/user/account/login", (req, res) => {
 
 		var  username = req.body.username;
         var password = req.body.password;
+
+        console.log(username);
 // check if it exists in the database
-		// db.user.create({
-  //         username: username,
-  //         password: password,
-  //       }).then(function(results) {
-  //       // body...
-  //       	res.send(results);
-  //     });
-  		console.log(username);
+		db.User.findOne({
+			where:{
+		          username: username,
+		          password: password
+		      }
+        }).then(function(results) {
+        // body...
+        	if (results) {
+
+        		res.send("User exists.");
+        	}
+        	
+      });
+  		
   			
 	//DB	
 	})
 
 app.get("/user/account/login", (req, res) => {
+	console.log("Iam from GET USERlogin : ", res.body, " ", req.body);
 		res.json("/user/account/login");
 	//DB
 	//render result to HTML ***check the ajax get in the js file
